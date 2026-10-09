@@ -7,7 +7,7 @@ import { usePathname } from "next/navigation";
 import { studioLinks } from "@/data/studios";
 import { site } from "@/lib/site";
 
-const BOOK_HREF = `mailto:${site.emails.booking}`;
+const BOOK_HREF = `mailto:${site.emails.general}`; // needs to be populated with booking-specific email
 
 const NAV_HEIGHT = 96; // h-24
 
@@ -15,7 +15,7 @@ const NAV_HEIGHT = 96; // h-24
 const ACCENT_TEXT = "text-sky-400";
 
 const linkBase =
-  "text-xs font-medium uppercase tracking-[0.2em] transition-colors duration-300 hover:text-sky-400";
+  "whitespace-nowrap text-xs font-medium uppercase tracking-[0.2em] transition-colors duration-300 hover:text-sky-400";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -44,7 +44,21 @@ export default function Navbar() {
   // Lock page scroll while the mobile menu is open
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
+
+  // Close the mobile menu if the window is widened to the desktop layout,
+  // otherwise the page stays scroll-locked with no visible menu
+  useEffect(() => {
+    const mq = window.matchMedia("(min-width: 1024px)"); // Tailwind lg
+    const onChange = (e: MediaQueryListEvent) => {
+      if (e.matches) setMobileOpen(false);
+    };
+    mq.addEventListener("change", onChange);
+    return () => mq.removeEventListener("change", onChange);
+  }, []);
 
   // Second row is open while hovering Studios, and always on /studios pages
   const rowOpen = studiosOpen || onStudioPage;
@@ -67,8 +81,10 @@ export default function Navbar() {
         }`}
       >
         {/* Main row */}
-        <nav className="mx-auto flex h-24 max-w-6xl items-center justify-between px-6">
-          {/* Logo: transparent icon + white wordmark */}
+        <nav className="mx-auto flex h-24 max-w-6xl items-center justify-between gap-8 px-6">
+          {/* Logo: transparent icon + white wordmark.
+              Wordmark is large on tablets (logo + hamburger only), steps down at lg where
+              it shares the row with the links, then back up at xl when there's room. */}
           <Link href="/" onClick={closeAll} className="relative z-50 flex shrink-0 items-center gap-3 md:gap-4">
             <Image
               src="/logo-dark.png"
@@ -76,14 +92,14 @@ export default function Navbar() {
               width={157}
               height={96}
               priority
-              className="h-10 w-auto md:h-14"
+              className="h-10 w-auto md:h-14 lg:h-12 xl:h-14"
             />
-            <span className="whitespace-nowrap font-logo text-base font-light italic uppercase tracking-[0.18em] text-white md:text-3xl">
+            <span className="whitespace-nowrap font-logo text-base font-light italic uppercase tracking-[0.18em] text-white md:text-3xl lg:text-2xl xl:text-3xl">
               Infinite Studios<sup className="ml-0.5 text-[0.4em]">®</sup>
             </span>
           </Link>
 
-          <ul className="hidden items-center gap-10 text-zinc-100 md:flex">
+          <ul className="hidden items-center gap-8 text-zinc-100 lg:flex xl:gap-10">
             <li onMouseEnter={() => setStudiosOpen(true)}>
               <Link
                 href="/studios"
@@ -115,10 +131,10 @@ export default function Navbar() {
                 Credits
               </Link>
             </li>
-            <li onMouseEnter={() => setStudiosOpen(false)}>
+            <li onMouseEnter={() => setStudiosOpen(false)} className="shrink-0">
               <a
                 href={BOOK_HREF}
-                className="rounded-full border border-white/40 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.2em] text-white transition-colors duration-300 hover:bg-white hover:text-black"
+                className="block whitespace-nowrap rounded-full border border-white/40 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.2em] text-white transition-colors duration-300 hover:bg-white hover:text-black"
               >
                 Book a Session
               </a>
@@ -131,7 +147,7 @@ export default function Navbar() {
             onClick={() => setMobileOpen((o) => !o)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
-            className="relative z-50 h-6 w-7 shrink-0 md:hidden"
+            className="relative z-50 h-6 w-7 shrink-0 lg:hidden"
           >
             <span className={`absolute left-0 top-1/2 h-0.5 w-full bg-white transition-transform duration-500 ease-in-out ${mobileOpen ? "rotate-45" : "-translate-y-2"}`} />
             <span className={`absolute left-0 top-1/2 h-0.5 w-full bg-white transition-opacity duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
@@ -143,7 +159,7 @@ export default function Navbar() {
             Height animates via grid-rows 0fr → 1fr; the accent line lives on this wrapper
             so it travels down with the row and fades in alongside the labels. */}
         <div
-          className={`hidden border-b transition-[grid-template-rows,border-color] duration-500 ease-in-out md:grid ${
+          className={`hidden border-b transition-[grid-template-rows,border-color] duration-500 ease-in-out lg:grid ${
             rowOpen ? "grid-rows-[1fr] border-sky-400/60" : "grid-rows-[0fr] border-transparent"
           }`}
         >
@@ -161,7 +177,7 @@ export default function Navbar() {
                       href={`/studios/${s.slug}`}
                       onClick={() => setStudiosOpen(false)}
                       tabIndex={rowOpen ? 0 : -1}
-                      className={`whitespace-nowrap ${linkBase} ${active ? ACCENT_TEXT : "text-zinc-300"}`}
+                      className={`${linkBase} ${active ? ACCENT_TEXT : "text-zinc-300"}`}
                     >
                       {s.name}
                     </Link>
@@ -175,7 +191,7 @@ export default function Navbar() {
 
       {/* Mobile full-screen menu */}
       <div
-        className={`fixed inset-0 z-40 overflow-y-auto bg-black px-6 pb-12 pt-32 transition-opacity duration-500 ease-in-out md:hidden ${
+        className={`fixed inset-0 z-40 overflow-y-auto bg-black px-6 pb-12 pt-32 transition-opacity duration-500 ease-in-out lg:hidden ${
           mobileOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
@@ -219,7 +235,7 @@ export default function Navbar() {
       </div>
 
       {/* Spacer so content clears the fixed bar on non-home pages (taller on /studios pages, where the second row stays open) */}
-      {!isHome && <div className={onStudioPage ? "h-24 md:h-[calc(9.5rem+1px)]" : "h-24"} aria-hidden />}
+      {!isHome && <div className={onStudioPage ? "h-24 lg:h-[calc(9.5rem+1px)]" : "h-24"} aria-hidden />}
     </>
   );
 }

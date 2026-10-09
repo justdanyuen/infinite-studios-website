@@ -14,8 +14,8 @@ const exploreLinks = [
 const socials = [
   { href: site.socials.instagram, label: "Instagram", Icon: FaInstagram },
   { href: site.socials.facebook, label: "Facebook", Icon: FaFacebookF },
-  { href: site.socials.youtube, label: "YouTube", Icon: FaYoutube },
-  { href: site.socials.spotify, label: "Spotify", Icon: FaSpotify },
+//   { href: site.socials.youtube, label: "YouTube", Icon: FaYoutube },
+//   { href: site.socials.spotify, label: "Spotify", Icon: FaSpotify },
 ].filter((s) => s.href);
 
 const heading = "mb-5 text-xs font-medium uppercase tracking-[0.2em] text-zinc-500";
@@ -51,9 +51,9 @@ export default function Footer() {
               <a href={`mailto:${site.emails.general}`} className={`block ${link}`}>
                 {site.emails.general}
               </a>
-              <a href={`mailto:${site.emails.booking}`} className={`block ${link}`}>
+              {/* <a href={`mailto:${site.emails.booking}`} className={`block ${link}`}>
                 {site.emails.booking} <span className="text-zinc-500">(booking)</span>
-              </a>
+              </a> */}
             </address>
           </div>
 
@@ -104,10 +104,10 @@ export default function Footer() {
               ))}
             </ul>
             <a
-              href={`mailto:${site.emails.booking}`}
+              href={`mailto:${site.emails.general}`}
               className="mt-8 inline-block rounded-full border border-white/40 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.2em] text-white transition-colors duration-300 hover:bg-white hover:text-black"
             >
-              Book a Session
+              Contact Us
             </a>
           </div>
         </div>
