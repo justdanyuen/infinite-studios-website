@@ -3,7 +3,7 @@ import type { GearStudio } from "@/data/studios";
 
 export default function GearLayout({ studio }: { studio: GearStudio }) {
   return (
-    <Section eyebrow="Studios" title={studio.name}>
+    <Section eyebrow="Studio" title={studio.name}>
       <p className="max-w-2xl text-lg leading-8 text-zinc-400">{studio.intro}</p>
 
       <div className="mt-16 space-y-14">

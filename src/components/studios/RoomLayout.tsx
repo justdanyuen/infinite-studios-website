@@ -8,7 +8,7 @@ export default function RoomLayout({ studio }: { studio: RoomStudio }) {
     <>
       <Slideshow images={studio.images} className="h-[70svh] min-h-[420px]">
         <div className="mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-12">
-          <p className="text-xs uppercase tracking-[0.25em] text-sky-400">Studios</p>
+          <p className="text-xs uppercase tracking-[0.25em] text-sky-400">Studio</p>
           <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white md:text-6xl">{studio.name}</h1>
           <p className="mt-3 max-w-xl text-lg text-zinc-300">{studio.tagline}</p>
         </div>

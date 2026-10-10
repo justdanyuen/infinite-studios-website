@@ -5,9 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { studioLinks } from "@/data/studios";
-import { site } from "@/lib/site";
 
-// const BOOK_HREF = `mailto:${site.emails.general}`; // needs to be populated with booking-specific email
 const CONTACT_HREF = "/contact";
 
 const NAV_HEIGHT = 96; // h-24
@@ -61,7 +59,7 @@ export default function Navbar() {
     return () => mq.removeEventListener("change", onChange);
   }, []);
 
-  // Second row is open while hovering Studios, and always on /studios pages
+  // Second row is open while hovering Studio, and always on studio pages
   const rowOpen = studiosOpen || onStudioPage;
   const solid = !isHome || pastHero;
 
@@ -109,7 +107,7 @@ export default function Navbar() {
                 aria-expanded={rowOpen}
                 className={`flex items-center gap-1.5 ${linkBase} ${onStudioPage || studiosOpen ? ACCENT_TEXT : ""}`}
               >
-                Studios
+                Studio
                 <svg
                   className={`h-3 w-3 transition-transform duration-500 ease-in-out ${studiosOpen ? "rotate-180" : ""}`}
                   viewBox="0 0 12 12"
@@ -153,7 +151,7 @@ export default function Navbar() {
           </button>
         </nav>
 
-        {/* Expanding studios row (desktop).
+        {/* Expanding studio row (desktop).
             Height animates via grid-rows 0fr → 1fr; the accent line lives on this wrapper
             so it travels down with the row and fades in alongside the labels. */}
         <div
@@ -195,7 +193,7 @@ export default function Navbar() {
       >
         <ul className="space-y-6">
           {[
-            { href: "/studios", label: "Studios" },
+            { href: "/studios", label: "Studio" },
             { href: "/about", label: "About" },
             { href: "/credits", label: "Credits" },
           ].map((item, i) => (
@@ -220,13 +218,18 @@ export default function Navbar() {
               )}
             </li>
           ))}
-          <Link href={CONTACT_HREF} onClick={closeAll} className="text-4xl font-semibold tracking-tight text-white">
-            Contact
-          </Link>
+          <li
+            className={`transition-all duration-700 ease-out ${mobileOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"}`}
+            style={{ transitionDelay: mobileOpen ? "450ms" : "0ms" }}
+          >
+            <Link href={CONTACT_HREF} onClick={closeAll} className="text-4xl font-semibold tracking-tight text-white">
+              Contact
+            </Link>
+          </li>
         </ul>
       </div>
 
-      {/* Spacer so content clears the fixed bar on non-home pages (taller on /studios pages, where the second row stays open) */}
+      {/* Spacer so content clears the fixed bar on non-home pages (taller on studio pages, where the second row stays open) */}
       {!isHome && <div className={onStudioPage ? "h-24 lg:h-[calc(9.5rem+1px)]" : "h-24"} aria-hidden />}
     </>
   );
