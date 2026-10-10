@@ -7,7 +7,8 @@ import { usePathname } from "next/navigation";
 import { studioLinks } from "@/data/studios";
 import { site } from "@/lib/site";
 
-const BOOK_HREF = `mailto:${site.emails.general}`; // needs to be populated with booking-specific email
+// const BOOK_HREF = `mailto:${site.emails.general}`; // needs to be populated with booking-specific email
+const CONTACT_HREF = "/contact";
 
 const NAV_HEIGHT = 96; // h-24
 
@@ -131,13 +132,10 @@ export default function Navbar() {
                 Credits
               </Link>
             </li>
-            <li onMouseEnter={() => setStudiosOpen(false)} className="shrink-0">
-              <a
-                href={BOOK_HREF}
-                className="block whitespace-nowrap rounded-full border border-white/40 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.2em] text-white transition-colors duration-300 hover:bg-white hover:text-black"
-              >
-                Book a Session
-              </a>
+            <li onMouseEnter={() => setStudiosOpen(false)}>
+              <Link href={CONTACT_HREF} onClick={closeAll} className={`${linkBase} ${pathname === "/contact" ? ACCENT_TEXT : ""}`}>
+                Contact
+              </Link>
             </li>
           </ul>
 
@@ -165,7 +163,7 @@ export default function Navbar() {
         >
           <div className="overflow-hidden">
             <ul
-              className={`mx-auto flex h-11 max-w-6xl items-center justify-center gap-x-10 px-6 transition-opacity duration-500 ease-in-out ${
+              className={`mx-auto flex h-11 max-w-6xl items-center justify-center gap-x-6 px-6 transition-opacity duration-500 ease-in-out xl:gap-x-10 ${
                 rowOpen ? "opacity-100" : "opacity-0"
               }`}
             >
@@ -222,16 +220,10 @@ export default function Navbar() {
               )}
             </li>
           ))}
+          <Link href={CONTACT_HREF} onClick={closeAll} className="text-4xl font-semibold tracking-tight text-white">
+            Contact
+          </Link>
         </ul>
-        <a
-          href={BOOK_HREF}
-          className={`mt-10 inline-block rounded-full bg-white px-6 py-3 font-medium text-black transition-all duration-700 ease-out ${
-            mobileOpen ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-          }`}
-          style={{ transitionDelay: mobileOpen ? "450ms" : "0ms" }}
-        >
-          Book a Session
-        </a>
       </div>
 
       {/* Spacer so content clears the fixed bar on non-home pages (taller on /studios pages, where the second row stays open) */}
