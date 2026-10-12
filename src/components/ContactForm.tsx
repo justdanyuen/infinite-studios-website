@@ -40,7 +40,7 @@ export default function ContactForm() {
     return (
       <div className="border-l border-sky-400 pl-6">
         <p className="text-xl font-semibold text-white">Thanks, your message is on its way.</p>
-        <p className="mt-2 text-zinc-400">We'll get back to you as soon as we can.</p>
+        <p className="mt-2 text-zinc-400">We&apos;ll get back to you as soon as we can.</p>
       </div>
     );
   }

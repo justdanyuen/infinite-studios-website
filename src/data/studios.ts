@@ -30,7 +30,11 @@ export const studios: Studio[] = [
     description:
       "Two or three sentences about the room: what it's built for, what makes it sound or feel different, and who it's ideal for.",
     highlights: ["Console / DAW", "Monitoring", "Key outboard", "Room size"],
-    images: [],
+    images: [
+      // TODO: real control room photos
+      "/images/studios/studio-gear/equipment.jpg",
+      "/images/studios/studio-gear/equipment2.jpg",
+    ],
   },
   {
     kind: "room",
@@ -39,7 +43,11 @@ export const studios: Studio[] = [
     tagline: "One-line hook for the room.",
     description: "Placeholder description.",
     highlights: ["Square footage", "Ceiling height", "Isolation booths", "Instruments on hand"],
-    images: [],
+    images: [
+      "/images/studios/tracking-room/isoroom.jpg",
+      "/images/studios/tracking-room/isoroom2.jpg",
+      "/images/studios/tracking-room/microphonefull.jpg",
+    ],
   },
   {
     kind: "room",
@@ -48,7 +56,12 @@ export const studios: Studio[] = [
     tagline: "One-line hook for the room.",
     description: "Placeholder description.",
     highlights: ["Microphones", "Preamps", "Compressors", "Effects"],
-    images: [],
+    images: [
+      "/images/studios/studio-gear/microphone.jpg",
+      "/images/studios/studio-gear/vintageequip.jpg",
+      "/images/studios/studio-gear/equipment3.jpg",
+      "/images/studios/studio-gear/keyboards.jpg",
+    ],
   },
   {
     kind: "room",
@@ -57,7 +70,11 @@ export const studios: Studio[] = [
     tagline: "One-line hook for the space.",
     description: "Placeholder description.",
     highlights: ["Seating", "Kitchen", "Wi-Fi", "Parking"],
-    images: [],
+    images: [
+      "/images/studios/lounge/couch.jpg",
+      "/images/studios/lounge/kitchen.jpg",
+      "/images/studios/lounge/cokemachine.jpg",
+    ],
   },
   {
     kind: "gear",
@@ -65,7 +82,10 @@ export const studios: Studio[] = [
     name: "Floating Gear",
     tagline: "Gear that moves between rooms.",
     intro: "Equipment available in any room on request. Placeholder intro text.",
-    images: [],
+    images: [
+      "/images/studios/floating-gear/guitars.jpg",
+      "/images/studios/floating-gear/fenderamp.jpg",
+    ],
     categories: [
       {
         name: "Microphones",
@@ -97,5 +117,8 @@ export const studios: Studio[] = [
 
 // The navbar reads this, so array order = menu order
 export const studioLinks = studios.map(({ slug, name }) => ({ slug, name }));
+
+// Spaces featured on the home page, in display order
+export const featuredStudioSlugs = ["tracking-room", "control-room", "lounge", "equipment-room"];
 
 export const getStudio = (slug: string) => studios.find((s) => s.slug === slug);

@@ -11,7 +11,7 @@ export const site = {
   address: {
     line1: "3132 Marina Drive",
     line2: "Alameda, CA, 94501",
-    mapUrl: "https://maps.google.com/?q=Infinite+Studios", // TODO: real Maps link
+    mapUrl: "https://www.google.com/maps/search/?api=1&query=3132+Marina+Drive+Alameda+CA+94501",
   },
   phone: "(510) 521-0321",
   emails: {
@@ -44,7 +44,6 @@ export const PUBLIC_ROUTES: {
   { path: "/", changeFrequency: "monthly", priority: 1.0 },
   { path: "/studios", changeFrequency: "monthly", priority: 0.9 },
   { path: "/credits", changeFrequency: "weekly", priority: 0.8 },
-  { path: "/music", changeFrequency: "weekly", priority: 0.7 }, // song library — rename to match your route
   { path: "/about", changeFrequency: "yearly", priority: 0.6 },
   { path: "/contact", changeFrequency: "yearly", priority: 0.6 },
 ];

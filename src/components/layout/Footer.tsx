@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FaInstagram, FaFacebookF, FaYoutube, FaSpotify } from "react-icons/fa6";
+import { FaInstagram, FaFacebookF } from "react-icons/fa6";
 import { studioLinks } from "@/data/studios";
 import { site } from "@/lib/site";
 
@@ -14,8 +14,8 @@ const exploreLinks = [
 const socials = [
   { href: site.socials.instagram, label: "Instagram", Icon: FaInstagram },
   { href: site.socials.facebook, label: "Facebook", Icon: FaFacebookF },
-//   { href: site.socials.youtube, label: "YouTube", Icon: FaYoutube },
-//   { href: site.socials.spotify, label: "Spotify", Icon: FaSpotify },
+  // To show more, add the URL to site.socials and import the icon, e.g.
+  // { href: site.socials.youtube, label: "YouTube", Icon: FaYoutube },
 ].filter((s) => s.href);
 
 const heading = "mb-5 text-xs font-medium uppercase tracking-[0.2em] text-zinc-500";

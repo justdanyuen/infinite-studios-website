@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL, PUBLIC_ROUTES } from "@/lib/site";
+import { studios } from "@/data/studios";
 
 // Served at /sitemap.xml
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -12,6 +13,13 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     priority: route.priority,
   }));
 
+  const studioEntries: MetadataRoute.Sitemap = studios.map((s) => ({
+    url: `${SITE_URL}/studios/${s.slug}`,
+    lastModified: now,
+    changeFrequency: "monthly",
+    priority: 0.8,
+  }));
+
   // Later: if individual songs or credits get their own pages (e.g. /music/[slug]),
   // pull them from your data source here and append them, e.g.:
   //
@@ -22,7 +30,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   //   changeFrequency: "monthly" as const,
   //   priority: 0.5,
   // }));
-  // return [...staticEntries, ...songEntries];
+  // return [...staticEntries, ...studioEntries, ...songEntries];
 
-  return staticEntries;
+  return [...staticEntries, ...studioEntries];
 }

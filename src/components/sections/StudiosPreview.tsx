@@ -1,13 +1,11 @@
 import Image from "next/image";
 import Link from "next/link";
 import Section from "@/components/ui/Section";
+import { featuredStudioSlugs, getStudio, type Studio } from "@/data/studios";
 
-const spaces = [
-  { slug: "tracking-room", name: "Tracking Room", image: "/images/studios/tracking-room/isoroom.jpg" },
-  { slug: "control-room", name: "Control Room", image: "/images/studios/studio-gear/equipment.jpg" }, // TODO: real control room photo
-  { slug: "lounge", name: "Lounge", image: "/images/studios/lounge/couch.jpg" },
-  { slug: "studio-gear", name: "Studio Gear", image: "/images/studios/studio-gear/microphone.jpg" },
-]; // TODO: import from @/data/studios
+const spaces = featuredStudioSlugs
+  .map(getStudio)
+  .filter((s): s is Studio => s !== undefined);
 
 export default function StudiosPreview() {
   return (
@@ -16,13 +14,15 @@ export default function StudiosPreview() {
         {spaces.map((s) => (
           <Link key={s.slug} href={`/studios/${s.slug}`} className="group">
             <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-zinc-800">
-              <Image
-                src={s.image}
-                alt={s.name}
-                fill
-                sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
-                className="object-cover transition duration-500 group-hover:scale-105"
-              />
+              {s.images[0] && (
+                <Image
+                  src={s.images[0]}
+                  alt={s.name}
+                  fill
+                  sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
+                  className="object-cover transition duration-500 group-hover:scale-105"
+                />
+              )}
             </div>
             <p className="mt-3 font-medium">{s.name}</p>
           </Link>

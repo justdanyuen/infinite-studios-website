@@ -4,7 +4,7 @@ import History from "@/components/sections/History";
 import StudiosPreview from "@/components/sections/StudiosPreview";
 import SessionsGallery from "@/components/sections/SessionsGallery";
 import MusicGallery from "@/components/sections/MusicGallery";
-import LogoDivider from "@/components/ui/LogoDivider";
+// import LogoDivider from "@/components/ui/LogoDivider";
 
 export default function Home() {
   return (
