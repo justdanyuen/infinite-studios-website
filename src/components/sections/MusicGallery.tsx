@@ -13,7 +13,7 @@ export default async function MusicGallery() {
           <div key={i}>
             <div className="aspect-square rounded-md bg-zinc-800" />
             <p className="mt-3 font-medium">{c.work}</p>
-            <p className="text-sm text-zinc-400">
+            <p className="text-sm text-zinc-300">
               {c.artist} · {c.year}
             </p>
             <div className="mt-2 flex gap-3 text-sm">

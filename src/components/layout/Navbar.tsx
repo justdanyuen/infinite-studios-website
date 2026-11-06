@@ -206,7 +206,7 @@ export default function Navbar() {
                 {item.label}
               </Link>
               {item.href === "/studios" && (
-                <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-zinc-400">
+                <ul className="mt-4 grid grid-cols-2 gap-x-4 gap-y-2 text-zinc-300">
                   {studioLinks.map((s) => (
                     <li key={s.slug}>
                       <Link href={`/studios/${s.slug}`} onClick={closeAll} className="hover:text-white">

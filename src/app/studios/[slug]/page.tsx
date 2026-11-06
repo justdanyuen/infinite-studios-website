@@ -31,10 +31,10 @@ export default async function StudioPage({ params }: Props) {
       {studio.kind === "gear" ? <GearLayout studio={studio} /> : <RoomLayout studio={studio} />}
 
       <nav className="mx-auto flex max-w-6xl justify-between px-6 pb-16 text-xs uppercase tracking-[0.2em]">
-        <Link href={`/studios/${prev.slug}`} className="text-zinc-400 hover:text-sky-400">
+        <Link href={`/studios/${prev.slug}`} className="text-zinc-300 hover:text-sky-400">
           ← {prev.name}
         </Link>
-        <Link href={`/studios/${next.slug}`} className="text-zinc-400 hover:text-sky-400">
+        <Link href={`/studios/${next.slug}`} className="text-zinc-300 hover:text-sky-400">
           {next.name} →
         </Link>
       </nav>

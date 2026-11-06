@@ -7,22 +7,37 @@ export default function RoomLayout({ studio }: { studio: RoomStudio }) {
   return (
     <>
       <Slideshow images={studio.images} className="h-[70svh] min-h-[420px]">
-        <div className="mx-auto flex h-full max-w-6xl flex-col justify-end px-6 pb-12">
-          <p className="text-xs uppercase tracking-[0.25em] text-sky-400">Studio</p>
-          <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white md:text-6xl">{studio.name}</h1>
-          <p className="mt-3 max-w-xl text-lg text-zinc-300">{studio.tagline}</p>
+        <div className="h-full px-6">
+          <div className="mx-auto flex h-full max-w-6xl flex-col justify-end pb-12">
+            <p className="text-xs uppercase tracking-[0.25em] text-sky-400">Studio</p>
+            <h1 className="mt-3 text-4xl font-semibold tracking-tight text-white md:text-6xl">
+              {studio.name}
+            </h1>
+            <p className="mt-3 max-w-xl text-lg text-zinc-300">{studio.tagline}</p>
+          </div>
         </div>
       </Slideshow>
 
       <Section eyebrow="Overview" title="About the space">
         <div className="grid gap-12 md:grid-cols-[3fr_2fr]">
-          <p className="text-lg leading-8 text-zinc-400">{studio.description}</p>
-          <ul className="space-y-3 border-l border-zinc-800 pl-6">
-            {studio.highlights.map((h, idx) => (
-              <li key={idx} className="text-sm uppercase tracking-[0.15em] text-zinc-300">
-                {h}
-              </li>
-            ))}
+          <p className="text-lg leading-8 text-zinc-300">{studio.description}</p>
+          <ul className="space-y-6 border-l border-zinc-800 pl-6">
+            {studio.highlights.map((h, idx) =>
+              typeof h === "string" ? (
+                <li key={idx} className="text-sm uppercase tracking-[0.15em] text-zinc-300">
+                  {h}
+                </li>
+              ) : (
+                <li key={idx}>
+                  <p className="text-xs uppercase tracking-[0.2em] text-sky-400">{h.label}</p>
+                  <ul className="mt-2 space-y-1 text-zinc-200">
+                    {h.items.map((item) => (
+                      <li key={item}>{item}</li>
+                    ))}
+                  </ul>
+                </li>
+              ),
+            )}
           </ul>
         </div>
         <a

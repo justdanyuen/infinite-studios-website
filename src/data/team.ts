@@ -1,20 +1,35 @@
+// Text fields support **bold** and *italic* (see src/components/ui/RichText.tsx).
+// Use curly quotes (“ ”) inside strings so they don't need escaping.
 export type TeamMember = {
   name: string;
   role: string;
-  bio: string;
+  bio: string[]; // one string per paragraph
+  credits?: string[]; // optional "Notable Collaborations & Engineering Credits" paragraphs
   headshot?: string; // path under /public, e.g. "/images/team/jane.jpg"
 };
 
 export const team: TeamMember[] = [
   {
-    name: "Engineer Name",
+    name: "Michael Denten",
     role: "Owner / Head Engineer",
-    bio: "A paragraph about this engineer: background, how they got into audio, the genres and artists they've worked with, what they bring to a session, and what they enjoy most about the work. Three to five sentences reads well next to a headshot.",
+    headshot: "/images/team/MichaelDenton.jpeg",
+    bio: [
+      "Michael Denten was born in the Bay Area of California, where his deep love for music began at a very young age. He first established himself as a performing musician in the **early 1970s** before transitioning behind the boards to become a full-time **recording, mixing, and mastering engineer**. Known for his *technical precision and creative ear*, Denten quickly became a trusted, highly reputable figure for some of the **most prolific artists to ever come out of the West Coast**.",
+      "Denten cut his teeth working alongside the architects of funk and soul, engineering sessions for legendary figures like **Verdine White, Sly Stone, and Tower of Power**. Managing these heavy-hitting rhythm and horn sections early in his career sharpened his instinct for capturing dynamic live tracking and a *pristine, powerful low end*.",
+      "While Denten went on to earn massive industry accolades as a **true hip-hop pioneer** who helped build the sonic foundation of West Coast rap, his trademark is his *deep creative versatility*. He is far more than a genre-specific engineer: his range spans landmark pop-R&B records and intricate Latin jazz recordings, capturing world-renowned percussionists like **Giovanni Hidalgo** with the same dedication and sonic mastery he brings to the culture of hip-hop.",
+      "Throughout his exceptional history in the music industry, Michael Denten has lived by a simple, enduring philosophy: *“If you honor the music, the music will honor you.”*",
+    ],
+    credits: [
+      "Michael Denten's engineering legacy spans iconic eras in American music. In the realms of funk, R&B, and jazz, he engineered and preserved the signature *“East Bay Soul”* horn arrangements for Oakland legends **Tower of Power**, tracked studio sessions with Earth, Wind & Fire's world-class bassist **Verdine White**, and worked closely with **Sly Stone** to capture his legendary Bay Area funk energy. He was also a key engineering and mixing contributor to **Bobby Brown** during his landmark, multi-platinum R&B era, and recorded master percussionist **Giovanni Hidalgo**, capturing intricate Latin jazz rhythms and acoustic instrumentation with precise clarity.",
+      "As a definitive pioneer in hip-hop and rap, Denten's sonic architecture shaped the genre's history. He mixed the global, multi-platinum anthem *“I Got 5 On It”* by **Luniz** and provided crucial engineering and programming for **2Pac** on his posthumous multi-platinum releases. He remains a cornerstone of modern West Coast music, serving as the longtime engineer and mixer behind **E-40**'s biggest hits, including *“Choices (Yup)”* and *“Function”*, and mixing the massive collaborative single *“Big Subwoofer”* for the West Coast supergroup **Mount Westmore** (Snoop Dogg, Ice Cube, E-40, and Too $hort).",
+    ],
   },
   {
-    name: "Engineer Name",
+    name: "Anthony Perez",
     role: "Recording & Mix Engineer",
-    bio: "A paragraph about this engineer: background, specialties, notable projects, and their approach in the studio. Three to five sentences reads well next to a headshot.",
+    bio: [
+      "A paragraph about this engineer: background, specialties, notable projects, and their approach in the studio. Three to five sentences reads well next to a headshot.",
+    ],
   },
 ];
 

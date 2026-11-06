@@ -26,7 +26,7 @@ function TeamList({ team }: { team: Credit["team"] }) {
       {team.map((t, i) => (
         <li key={i}>
           <span className="text-zinc-200">{t.member}</span>
-          <span className="text-zinc-500">: {t.role}</span>
+          <span className="text-zinc-400">: {t.role}</span>
         </li>
       ))}
     </ul>
@@ -43,7 +43,7 @@ export default async function CreditsPage() {
         <div className="hidden md:block">
           <table className="w-full text-left text-sm">
             <thead>
-              <tr className="border-b border-zinc-800 text-xs uppercase tracking-[0.2em] text-zinc-500">
+              <tr className="border-b border-zinc-800 text-xs uppercase tracking-[0.2em] text-zinc-400">
                 <th className="py-3 pr-6 font-medium">Year</th>
                 <th className="py-3 pr-6 font-medium">Work</th>
                 <th className="py-3 pr-6 font-medium">Artist</th>
@@ -54,7 +54,7 @@ export default async function CreditsPage() {
             <tbody className="divide-y divide-zinc-800">
               {credits.map((c, i) => (
                 <tr key={i} className="align-top transition-colors hover:bg-white/[0.02]">
-                  <td className="py-4 pr-6 font-mono text-zinc-500">{c.year}</td>
+                  <td className="py-4 pr-6 font-mono text-zinc-400">{c.year}</td>
                   <td className="py-4 pr-6 font-medium text-white">{c.work}</td>
                   <td className="py-4 pr-6 text-zinc-300">{c.artist}</td>
                   <td className="py-4 pr-6"><TeamList team={c.team} /></td>
@@ -71,7 +71,7 @@ export default async function CreditsPage() {
             <li key={i} className="space-y-2 py-5 text-sm">
               <div className="flex items-baseline justify-between gap-4">
                 <p className="font-medium text-white">{c.work}</p>
-                <span className="font-mono text-xs text-zinc-500">{c.year}</span>
+                <span className="font-mono text-xs text-zinc-400">{c.year}</span>
               </div>
               <p className="text-zinc-300">{c.artist}</p>
               <TeamList team={c.team} />

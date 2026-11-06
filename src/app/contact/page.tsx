@@ -11,7 +11,7 @@ export default function ContactPage() {
   return (
     <main>
       <Section eyebrow="Contact" title="Get in touch">
-        <p className="mb-14 max-w-2xl text-lg leading-8 text-zinc-400">
+        <p className="mb-14 max-w-2xl text-lg leading-8 text-zinc-300">
           Booking a session or have a question about the studio? Send us a message and we&apos;ll get back to you.
         </p>
         <ContactForm />

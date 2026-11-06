@@ -30,7 +30,7 @@ export default function StudiosIndex() {
               <h2 className="mt-4 text-xs font-medium uppercase tracking-[0.2em] text-white transition-colors group-hover:text-sky-400">
                 {s.name}
               </h2>
-              <p className="mt-1 text-sm text-zinc-400">{s.tagline}</p>
+              <p className="mt-1 text-sm text-zinc-300">{s.tagline}</p>
             </Link>
           ))}
         </div>

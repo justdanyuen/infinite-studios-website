@@ -20,11 +20,15 @@ export default function AboutBlurb() {
       </div>
 
       <Section eyebrow="Welcome" title="About the Studio">
-        <p className="max-w-2xl text-lg leading-8 text-zinc-400">
-          Short description of the studio: who it&apos;s for, what it offers, and what makes it
-          different. Two or three sentences.
+        <p className="text-lg leading-8 text-zinc-300">
+          Infinite Studios is a professional recording and mixing studio. We offer full service,
+          from the first recording session through final mastering. Located within a nice neighborhood
+          we also offer a more private session experience.
         </p>
-        <Link href="/about" className="mt-8 inline-block text-sm font-medium underline underline-offset-4">
+        <Link
+          href="/about"
+          className="mt-8 inline-block text-sm font-medium underline underline-offset-4"
+        >
           More about us
         </Link>
       </Section>

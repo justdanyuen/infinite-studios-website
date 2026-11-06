@@ -35,7 +35,7 @@ export default function HeroSlideshow() {
       ))}
 
       {/* Even dim across the whole photo */}
-      <div className="absolute inset-0 bg-black/50" />
+      <div className="absolute inset-0 bg-black/35" />
       {/* Extra shade behind the navbar */}
       <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-black/60 to-transparent" />
       {/* Dissolve the bottom of the photo into the next section */}

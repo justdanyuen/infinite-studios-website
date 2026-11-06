@@ -18,7 +18,7 @@ const socials = [
   // { href: site.socials.youtube, label: "YouTube", Icon: FaYoutube },
 ].filter((s) => s.href);
 
-const heading = "mb-5 text-xs font-medium uppercase tracking-[0.2em] text-zinc-500";
+const heading = "mb-5 text-xs font-medium uppercase tracking-[0.2em] text-zinc-400";
 const link = "text-sm text-zinc-300 transition-colors duration-300 hover:text-sky-400";
 
 async function CopyrightYear() {
@@ -37,7 +37,7 @@ export default function Footer() {
                 Infinite Studios<sup className="ml-0.5 text-[0.45em]">®</sup>
               </span>
             </Link>
-            <p className="mt-4 max-w-xs text-sm text-zinc-400">{site.tagline}</p>
+            <p className="mt-4 max-w-xs text-sm text-zinc-300">{site.tagline}</p>
 
             <address className="mt-8 space-y-1 text-sm not-italic text-zinc-300">
               <a href={site.address.mapUrl} target="_blank" rel="noopener noreferrer" className={`block ${link}`}>
@@ -52,7 +52,7 @@ export default function Footer() {
                 {site.emails.general}
               </a>
               {/* <a href={`mailto:${site.emails.booking}`} className={`block ${link}`}>
-                {site.emails.booking} <span className="text-zinc-500">(booking)</span>
+                {site.emails.booking} <span className="text-zinc-400">(booking)</span>
               </a> */}
             </address>
           </div>
@@ -113,7 +113,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 text-xs text-zinc-500 sm:flex-row sm:items-center sm:justify-between">
+        <div className="mt-16 flex flex-col gap-4 border-t border-white/10 pt-8 text-xs text-zinc-400 sm:flex-row sm:items-center sm:justify-between">
           <p>
             © <CopyrightYear /> {site.name}. All rights reserved.
           </p>
