@@ -96,7 +96,7 @@ export default function Footer() {
                     target="_blank"
                     rel="noopener noreferrer"
                     aria-label={label}
-                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 text-zinc-300 transition-colors duration-300 hover:border-sky-400 hover:text-sky-400"
+                    className="flex h-10 w-10 items-center justify-center rounded-md border border-white/15 text-zinc-300 transition-colors duration-300 hover:border-sky-400 hover:text-sky-400"
                   >
                     <Icon className="h-4 w-4" />
                   </a>
@@ -105,7 +105,7 @@ export default function Footer() {
             </ul>
             <a
               href={`mailto:${site.emails.general}`}
-              className="mt-8 inline-block rounded-full border border-white/40 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.2em] text-white transition-colors duration-300 hover:bg-white hover:text-black"
+              className="mt-8 inline-block rounded-md border border-zinc-300 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.2em] text-white transition-colors duration-300 hover:border-sky-400 hover:bg-sky-400 hover:text-black"
             >
               Contact Us
             </a>

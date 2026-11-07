@@ -16,7 +16,7 @@ export default function StudiosIndex() {
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {studios.map((s) => (
             <Link key={s.slug} href={`/studios/${s.slug}`} className="group block">
-              <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-zinc-800">
+              <div className="relative aspect-[4/3] overflow-hidden rounded-sm bg-zinc-800">
                 {s.images[0] && (
                   <Image
                     src={s.images[0]}

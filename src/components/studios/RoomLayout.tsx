@@ -1,9 +1,13 @@
 import Section from "@/components/ui/Section";
 import Slideshow from "@/components/ui/Slideshow";
+import HighlightList from "@/components/studios/HighlightList";
 import type { RoomStudio } from "@/data/studios";
 import { site } from "@/lib/site";
 
 export default function RoomLayout({ studio }: { studio: RoomStudio }) {
+  const paragraphs = Array.isArray(studio.description) ? studio.description : [studio.description];
+  const hasHighlights = !!studio.highlights?.length;
+
   return (
     <>
       <Slideshow images={studio.images} className="h-[70svh] min-h-[420px]">
@@ -19,26 +23,13 @@ export default function RoomLayout({ studio }: { studio: RoomStudio }) {
       </Slideshow>
 
       <Section eyebrow="Overview" title="About the space">
-        <div className="grid gap-12 md:grid-cols-[3fr_2fr]">
-          <p className="text-lg leading-8 text-zinc-300">{studio.description}</p>
-          <ul className="space-y-6 border-l border-zinc-800 pl-6">
-            {studio.highlights.map((h, idx) =>
-              typeof h === "string" ? (
-                <li key={idx} className="text-sm uppercase tracking-[0.15em] text-zinc-300">
-                  {h}
-                </li>
-              ) : (
-                <li key={idx}>
-                  <p className="text-xs uppercase tracking-[0.2em] text-sky-400">{h.label}</p>
-                  <ul className="mt-2 space-y-1 text-zinc-200">
-                    {h.items.map((item) => (
-                      <li key={item}>{item}</li>
-                    ))}
-                  </ul>
-                </li>
-              ),
-            )}
-          </ul>
+        <div className={hasHighlights ? "grid gap-12 md:grid-cols-[3fr_2fr]" : undefined}>
+          <div className="space-y-6 text-lg leading-8 text-zinc-300">
+            {paragraphs.map((para, idx) => (
+              <p key={idx}>{para}</p>
+            ))}
+          </div>
+          {hasHighlights && <HighlightList highlights={studio.highlights!} />}
         </div>
         <a
           href={`mailto:${site.emails.general}?subject=${encodeURIComponent(`Booking inquiry: ${studio.name}`)}`}

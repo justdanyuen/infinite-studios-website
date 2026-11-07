@@ -16,15 +16,15 @@ export default function AboutPage() {
       <Section eyebrow="About" title="The Team">
         <div className="space-y-20 md:space-y-28">
           {team.map((member, i) => (
-            <article key={i} className="grid items-start gap-10 md:grid-cols-[3fr_2fr] md:gap-16">
+            <article key={i} className="grid items-start gap-10 md:grid-cols-[5fr_4fr] md:gap-16">
               {/* Headshot: on top on mobile, right side on desktop */}
-              <div className="relative order-first aspect-square w-full max-w-sm overflow-hidden rounded-lg bg-zinc-800 md:sticky md:top-32 md:order-last md:justify-self-end">
+              <div className="relative order-first aspect-square w-full max-w-md overflow-hidden rounded-lg bg-zinc-800 md:order-last md:max-w-none">
                 {member.headshot && (
                   <Image
                     src={member.headshot}
                     alt={member.name}
                     fill
-                    sizes="(min-width: 768px) 40vw, 100vw"
+                    sizes="(min-width: 768px) 45vw, 100vw"
                     className="object-cover object-[center_15%]"
                   />
                 )}

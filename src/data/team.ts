@@ -26,9 +26,12 @@ export const team: TeamMember[] = [
   },
   {
     name: "Anthony Perez",
-    role: "Recording & Mix Engineer",
+    role: "Audio Engineer",
+    headshot: "/images/team/AnthonyPerez.png",
     bio: [
-      "A paragraph about this engineer: background, specialties, notable projects, and their approach in the studio. Three to five sentences reads well next to a headshot.",
+      "Born in Mountain View and raised in the small town of Morgan Hill, California, Anthony Perez grew up in a creative environment that encouraged *self-taught exploration* and a *deep curiosity for sound*. He began producing music in his **early teens**, a passion that led him to formalize his craft at the **Musicians Institute**.",
+      "Immediately after graduating, Anthony joined the team at Infinite Studios in Alameda, working closely under the mentorship of veteran engineer **Michael Denten**. Stepping straight into high-stakes studio environments, he served as an **assistant engineer** on the breakout **Mount Westmore** supergroup single *“Big Subwoofer”* (Snoop Dogg, Ice Cube, E-40, and Too $hort).",
+      "Anthony has since built a versatile range of experience across various session demands. His credits include assistant engineering across **E-40**'s subsequent projects, serving as an **assistant mastering engineer** on a full-length project for **P-Lo**, and tracking for global Punjabi icon **Diljit Dosanjh** (including the single *“Charmer”*). From running live instrumentation tracking to detailed vocal production, he continues to support an eclectic roster of artists at the facility, including Digital Underground legend **Money B** and blues legend **Billy Branch**.",
     ],
   },
 ];

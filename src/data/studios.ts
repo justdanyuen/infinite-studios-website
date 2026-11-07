@@ -10,8 +10,8 @@ export type Highlight = string | { label: string; items: string[] };
 
 export type RoomStudio = Base & {
   kind: "room";
-  description: string;
-  highlights: Highlight[];
+  description: string | string[]; // use an array for multiple paragraphs
+  highlights?: Highlight[]; // omit to let the description span the full width
 };
 
 export type GearItem = { name: string; detail?: string; qty?: number };
@@ -19,6 +19,7 @@ export type GearItem = { name: string; detail?: string; qty?: number };
 export type GearStudio = Base & {
   kind: "gear";
   intro: string;
+  highlights?: Highlight[]; // optional side dropdowns next to the intro
   categories: { name: string; items: GearItem[] }[];
 };
 
@@ -30,24 +31,33 @@ export const studios: Studio[] = [
     slug: "control-room",
     name: "Control Room",
     tagline: "State-of-the-art mixing with full Dolby Atmos monitoring.",
-    description:
-      "The Control Room is a state-of-the-art space built for high-end mixing. It's anchored by an Avid S6 console with Matrix preamps and Burl converters, and top-of-the-line monitoring: ATC SCM25A main speakers alongside full Dolby Atmos monitoring with Neumann KH 120s and stereo subwoofers.",
+    description: [
+      "The Control Room is a state-of-the-art mixing suite featuring premium audio gear and a legacy of hosting legendary artists. The space delivers high-end sonic quality for professional mixing, housing an elite Avid S6 console, Matrix preamps, and pristine Burl converters. For world-class playback translation, the room is equipped with top-of-the-line ATC SCM25A Mk2 speakers alongside a full Dolby Atmos Neumann monitoring system.",
+      "Over the years, this premier studio has served as a creative home for an impressive roster of iconic talent, including Tupac, E-40, Shock G, Kehlani, Stick Figure, Collie Buddz, and many more.",
+    ],
     highlights: [
       {
         label: "Console / DAW",
-        items: ["Avid S6", "Pro Tools 2020", "Logic", "Reason 13", "WaveLab 13"],
+        items: ["Avid S6", "Pro Tools 2026.4", "Logic", "Reason 13", "WaveLab 13"],
       },
       {
         label: "Stereo Monitoring",
-        items: ["ATC SCM25A", "Yamaha NS-10M", "Auratone"],
+        items: ["ATC SCM25A Mk2", "Yamaha NS-10M", "Auratone"],
       },
       {
         label: "Dolby Atmos Monitoring",
-        items: ["Neumann KH 120", "Stereo subwoofers"],
+        items: ["Neumann KH 120", "Neumann stereo subwoofer"],
       },
       {
         label: "Key Outboard",
-        items: ["GML 2020 Channel Strip", "Telefunken V72A", "Neve 3314"],
+        items: [
+          "GML 2026 Channel Strip",
+          "Telefunken V72A",
+          "Neve 3314",
+          "LA-4 Compressors",
+          "1176 Compressors",
+          "API 500 VPR Rack",
+        ],
       },
     ],
     images: [
@@ -60,10 +70,11 @@ export const studios: Studio[] = [
     kind: "room",
     slug: "tracking-room",
     name: "Tracking Room",
-    tagline: "One-line hook for the room.",
-    description:
-      "The Tracking Room at Infinite Studios is engineered for ultimate versatility, built to handle everything from full horn sections to intimate vocal sessions. Drums tracked in this space sound exceptionally tight, delivering a pristine, punchy sound straight from the source. The room is acoustically treated with a hybrid “live end / dead end” design, allowing engineers to capture distinct sonic characteristics and natural room reflections depending entirely on the project's creative direction. Whether recording a live band or tracking a solo artist, the space provides the exact acoustic flexibility needed to shape the perfect sound.",
-    highlights: ["Square footage", "Ceiling height", "Isolation booths", "Instruments on hand"],
+    tagline: "A versatile live room for full bands, horn sections, and vocals.",
+    description: [
+      "The Tracking Room at Infinite Studios is engineered for ultimate versatility, built to handle everything from full horn sections to intimate vocal sessions. Drums tracked in this space sound exceptionally tight, delivering a pristine, punchy sound straight from the source.",
+      "The room is acoustically treated with a hybrid “live end / dead end” design, allowing engineers to capture distinct sonic characteristics and natural room reflections depending entirely on the project's creative direction. Whether recording a live band or tracking a solo artist, the space provides the exact acoustic flexibility needed to shape the perfect sound.",
+    ],
     images: [
       "/images/studios/tracking-room/isoroom.jpg",
       "/images/studios/tracking-room/isoroom2.jpg",
@@ -76,7 +87,26 @@ export const studios: Studio[] = [
     name: "Equipment Room",
     tagline: "A deep collection of vintage and modern microphones.",
     intro:
-      "Our microphone collection spans classic tube, condenser, and ribbon mics alongside modern workhorses, from Neumann and Telefunken to Royer, Sony, and AKG.",
+      "The Equipment Room has full output access to the Control Room, providing extra recording space when needed. Our microphone collection spans classic tube, condenser, and ribbon mics alongside modern workhorses, from Neumann and Telefunken to Royer, Sony, and AKG.",
+    highlights: [
+      {
+        label: "Computer",
+        items: ["Mac Pro Tower (Intel 16-core Xeon W)"],
+      },
+      {
+        label: "Chassis",
+        items: [
+          "Burl B80 Mothership",
+          "Mutec Clock",
+          "Avid MTRX",
+          "Avid Sync IO",
+          "Waves SoundGrid",
+          "Waves DiGiGrid System",
+          "Lexicon 224X",
+          "Eventide H9000",
+        ],
+      },
+    ],
     images: [
       "/images/studios/studio-gear/microphone.jpg",
       "/images/studios/studio-gear/vintageequip.jpg",
@@ -175,9 +205,11 @@ export const studios: Studio[] = [
     kind: "room",
     slug: "lounge",
     name: "Lounge",
-    tagline: "One-line hook for the space.",
-    description: "Placeholder description.",
-    highlights: ["Seating", "Kitchen", "Wi-Fi", "Parking"],
+    tagline: "A laid-back hybrid space for tracking, natural reverb, and downtime.",
+    description: [
+      "The Lounge is a comfortable hybrid space where recording capabilities meet the laid-back energy of a spot built to just chill. Directly connected to the main control room, this dual-purpose environment functions cleanly as a secondary tracking space and a natural reverb chamber, giving your drums an authentic, real live room ambiance.",
+      "Far from a sterile booth, it is a relaxed place to decompress and unwind between intense takes, centered around a pair of comfortable green couches and a vintage Coke machine to keep the session fueled. Whether you are routing audio to capture rich physical reflections, cutting isolated tracks, or simply relaxing with a slice of pizza, The Lounge delivers the perfect balance of studio utility and low-stress comfort to keep the session moving.",
+    ],
     images: [
       "/images/studios/lounge/couch.jpg",
       "/images/studios/lounge/kitchen.jpg",

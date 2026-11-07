@@ -7,7 +7,7 @@ export default function SessionsGallery() {
     <Section id="sessions" eyebrow="Recent Work" title="Sessions" className="bg-zinc-950">
       <div className="grid grid-cols-2 gap-3 md:grid-cols-3">
         {sessionPhotos.map((photo) => (
-          <div key={photo.src} className="relative aspect-square overflow-hidden rounded-md bg-zinc-800">
+          <div key={photo.src} className="relative aspect-square overflow-hidden rounded-sm bg-zinc-800">
             <Image
               src={photo.src}
               alt={photo.alt}

@@ -12,7 +12,7 @@ function Accolades({ items }: { items?: string[] }) {
   return (
     <div className="flex flex-wrap gap-1.5">
       {items.map((a) => (
-        <span key={a} className="rounded-full border border-sky-400/40 px-2.5 py-0.5 text-[11px] text-sky-300">
+        <span key={a} className="rounded-sm border border-sky-400/40 px-2.5 py-0.5 text-[11px] text-sky-300">
           {a}
         </span>
       ))}

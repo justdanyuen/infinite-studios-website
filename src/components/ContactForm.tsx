@@ -6,7 +6,9 @@ import { sendContact, type ContactState } from "@/app/contact/actions";
 const initialState: ContactState = { status: "idle" };
 
 const inputClass =
-  "w-full border-b border-zinc-700 bg-transparent py-3 text-white placeholder:text-zinc-500 outline-none transition-colors focus:border-sky-400";
+  "w-full border-b border-zinc-500 bg-transparent py-3 text-white placeholder:text-zinc-400 outline-none transition-colors hover:border-zinc-300 focus:border-sky-400";
+const textareaClass =
+  "mt-3 w-full resize-y rounded-md border border-zinc-500 bg-zinc-900 px-4 py-3 text-white placeholder:text-zinc-400 outline-none transition-colors hover:border-zinc-300 focus:border-sky-400 focus:ring-1 focus:ring-sky-400";
 const labelClass = "text-xs font-medium uppercase tracking-[0.2em] text-zinc-300";
 
 function Field({
@@ -72,7 +74,7 @@ export default function ContactForm() {
             rows={6}
             placeholder="Tell us about your project, dates, and what you need."
             defaultValue={v.message}
-            className={`${inputClass} resize-y`}
+            className={textareaClass}
           />
         </Field>
       </div>
@@ -84,7 +86,7 @@ export default function ContactForm() {
         <button
           type="submit"
           disabled={pending}
-          className="w-fit rounded-full border border-white/40 px-8 py-3 text-xs font-medium uppercase tracking-[0.2em] text-white transition-colors hover:bg-white hover:text-black disabled:opacity-50"
+          className="w-fit cursor-pointer rounded-md border border-zinc-300 px-8 py-3 text-xs font-medium uppercase tracking-[0.2em] text-white transition-colors hover:border-sky-400 hover:bg-sky-400 hover:text-black focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-sky-400 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {pending ? "Sending…" : "Send Message"}
         </button>

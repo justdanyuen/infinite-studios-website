@@ -13,7 +13,7 @@ export default function StudiosPreview() {
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
         {spaces.map((s) => (
           <Link key={s.slug} href={`/studios/${s.slug}`} className="group">
-            <div className="relative aspect-[3/4] overflow-hidden rounded-lg bg-zinc-800">
+            <div className="relative aspect-[3/4] overflow-hidden rounded-sm bg-zinc-800">
               {s.images[0] && (
                 <Image
                   src={s.images[0]}
