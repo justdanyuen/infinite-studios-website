@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import HeroSlideshow from "@/components/sections/HeroSlideshow";
 import AboutBlurb from "@/components/sections/AboutBlurb";
 import History from "@/components/sections/History";
@@ -15,7 +16,10 @@ export default function Home() {
       <History />
       <StudiosPreview />
       <SessionsGallery />
-      <MusicGallery />
+      {/* Featured credits refresh every ~30s, so they stream in rather than block the page */}
+      <Suspense fallback={null}>
+        <MusicGallery />
+      </Suspense>
     </main>
   );
 }

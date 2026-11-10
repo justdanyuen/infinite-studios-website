@@ -3,6 +3,8 @@ import Section from "@/components/ui/Section";
 import { sessionPhotos } from "@/data/sessions";
 
 export default function SessionsGallery() {
+  if (!sessionPhotos.length) return null;
+
   return (
     <Section id="sessions" eyebrow="Recent Work" title="Sessions" className="bg-zinc-950">
       <div className="grid grid-cols-2 gap-3 md:grid-cols-3">

@@ -1,84 +1,61 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import Section from "@/components/ui/Section";
-import { getCredits, type Credit } from "@/data/credits";
+import CreditsBrowser from "@/components/credits/CreditsBrowser";
+import { getCredits } from "@/data/credits";
 
 export const metadata: Metadata = {
   title: "Credits",
   description: "Selected work recorded, mixed, and mastered at Infinite Studios.",
 };
 
-function Accolades({ items }: { items?: string[] }) {
-  if (!items?.length) return null;
+// The credits refresh every ~30s, too often to bake into the instant App Shell,
+// so they stream in behind a Suspense boundary while the heading shows immediately.
+async function CreditsList() {
+  // Loaded on the server from the Google Sheet; searching/filtering happens in the browser
+  const credits = await getCredits();
+
+  if (!credits.length) {
+    return (
+      <p className="text-lg leading-8 text-zinc-300">
+        Our credits list is temporarily unavailable. Please check back shortly.
+      </p>
+    );
+  }
+  return <CreditsBrowser credits={credits} />;
+}
+
+// Loading state: same layout as the filters and a few rows, so nothing jumps
+function CreditsSkeleton() {
   return (
-    <div className="flex flex-wrap gap-1.5">
-      {items.map((a) => (
-        <span key={a} className="rounded-sm border border-sky-400/40 px-2.5 py-0.5 text-[11px] text-sky-300">
-          {a}
-        </span>
-      ))}
+    <div aria-hidden className="animate-pulse motion-reduce:animate-none">
+      <div className="mb-10 flex flex-col gap-6 lg:flex-row lg:gap-4">
+        <div className="h-14 flex-1 rounded-md bg-zinc-900" />
+        <div className="h-14 rounded-md bg-zinc-900 lg:w-64" />
+        <div className="h-14 rounded-md bg-zinc-900 lg:w-40" />
+      </div>
+      <div className="divide-y divide-zinc-800 border-t border-zinc-800">
+        {Array.from({ length: 6 }, (_, i) => (
+          <div key={i} className="flex items-center gap-4 py-5">
+            <div className="h-16 w-16 shrink-0 rounded-sm bg-zinc-900" />
+            <div className="flex-1 space-y-2">
+              <div className="h-4 w-1/3 rounded-sm bg-zinc-900" />
+              <div className="h-3 w-1/5 rounded-sm bg-zinc-900" />
+            </div>
+          </div>
+        ))}
+      </div>
     </div>
   );
 }
 
-function TeamList({ team }: { team: Credit["team"] }) {
-  return (
-    <ul className="space-y-0.5">
-      {team.map((t, i) => (
-        <li key={i}>
-          <span className="text-zinc-200">{t.member}</span>
-          <span className="text-zinc-400">: {t.role}</span>
-        </li>
-      ))}
-    </ul>
-  );
-}
-
-export default async function CreditsPage() {
-  const credits = await getCredits();
-
+export default function CreditsPage() {
   return (
     <main>
       <Section eyebrow="Credits" title="Selected Work">
-        {/* Desktop: table */}
-        <div className="hidden md:block">
-          <table className="w-full text-left text-sm">
-            <thead>
-              <tr className="border-b border-zinc-800 text-xs uppercase tracking-[0.2em] text-zinc-400">
-                <th className="py-3 pr-6 font-medium">Year</th>
-                <th className="py-3 pr-6 font-medium">Work</th>
-                <th className="py-3 pr-6 font-medium">Artist</th>
-                <th className="py-3 pr-6 font-medium">Team / Role</th>
-                <th className="py-3 font-medium">Accolades</th>
-              </tr>
-            </thead>
-            <tbody className="divide-y divide-zinc-800">
-              {credits.map((c, i) => (
-                <tr key={i} className="align-top transition-colors hover:bg-white/[0.02]">
-                  <td className="py-4 pr-6 font-mono text-zinc-400">{c.year}</td>
-                  <td className="py-4 pr-6 font-medium text-white">{c.work}</td>
-                  <td className="py-4 pr-6 text-zinc-300">{c.artist}</td>
-                  <td className="py-4 pr-6"><TeamList team={c.team} /></td>
-                  <td className="py-4"><Accolades items={c.accolades} /></td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
-
-        {/* Mobile: stacked cards */}
-        <ul className="divide-y divide-zinc-800 border-y border-zinc-800 md:hidden">
-          {credits.map((c, i) => (
-            <li key={i} className="space-y-2 py-5 text-sm">
-              <div className="flex items-baseline justify-between gap-4">
-                <p className="font-medium text-white">{c.work}</p>
-                <span className="font-mono text-xs text-zinc-400">{c.year}</span>
-              </div>
-              <p className="text-zinc-300">{c.artist}</p>
-              <TeamList team={c.team} />
-              <Accolades items={c.accolades} />
-            </li>
-          ))}
-        </ul>
+        <Suspense fallback={<CreditsSkeleton />}>
+          <CreditsList />
+        </Suspense>
       </Section>
     </main>
   );
