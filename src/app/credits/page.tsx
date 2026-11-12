@@ -52,7 +52,7 @@ function CreditsSkeleton() {
 export default function CreditsPage() {
   return (
     <main>
-      <Section eyebrow="Credits" title="Selected Work">
+      <Section eyebrow="Credits" title="Selected Works">
         <Suspense fallback={<CreditsSkeleton />}>
           <CreditsList />
         </Suspense>

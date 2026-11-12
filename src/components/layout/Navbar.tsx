@@ -8,13 +8,13 @@ import { studioLinks } from "@/data/studios";
 
 const CONTACT_HREF = "/contact";
 
-const NAV_HEIGHT = 96; // h-24
+const NAV_HEIGHT = 112; // h-28
 
 // Accent color: swap sky-400 here, in linkBase, and in the row border to match the logo
 const ACCENT_TEXT = "text-sky-400";
 
 const linkBase =
-  "whitespace-nowrap text-xs font-medium uppercase tracking-[0.2em] transition-colors duration-300 hover:text-sky-400";
+  "whitespace-nowrap text-sm font-medium uppercase tracking-[0.2em] transition-colors duration-300 hover:text-sky-400";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -80,7 +80,7 @@ export default function Navbar() {
         }`}
       >
         {/* Main row */}
-        <nav className="mx-auto flex h-24 max-w-6xl items-center justify-between gap-8 px-6">
+        <nav className="mx-auto flex h-28 max-w-6xl items-center justify-between gap-8 px-6">
           {/* Logo: transparent icon + white wordmark.
               Wordmark is large on tablets (logo + hamburger only), steps down at lg where
               it shares the row with the links, then back up at xl when there's room. */}
@@ -91,9 +91,9 @@ export default function Navbar() {
               width={157}
               height={96}
               priority
-              className="h-10 w-auto md:h-14 lg:h-12 xl:h-14"
+              className="h-12 w-auto md:h-16 lg:h-14 xl:h-16"
             />
-            <span className="whitespace-nowrap font-logo text-base font-light italic uppercase tracking-[0.18em] text-white md:text-3xl lg:text-2xl xl:text-3xl">
+            <span className="whitespace-nowrap font-logo text-lg font-light italic uppercase tracking-[0.18em] text-white md:text-4xl lg:text-2xl xl:text-4xl">
               Infinite Studios<sup className="ml-0.5 text-[0.4em]">®</sup>
             </span>
           </Link>
@@ -109,7 +109,7 @@ export default function Navbar() {
               >
                 Studio
                 <svg
-                  className={`h-3 w-3 transition-transform duration-500 ease-in-out ${studiosOpen ? "rotate-180" : ""}`}
+                  className={`h-3.5 w-3.5 transition-transform duration-500 ease-in-out ${studiosOpen ? "rotate-180" : ""}`}
                   viewBox="0 0 12 12"
                   fill="none"
                   stroke="currentColor"
@@ -143,7 +143,7 @@ export default function Navbar() {
             onClick={() => setMobileOpen((o) => !o)}
             aria-label={mobileOpen ? "Close menu" : "Open menu"}
             aria-expanded={mobileOpen}
-            className="relative z-50 h-6 w-7 shrink-0 lg:hidden"
+            className="relative z-50 h-7 w-8 shrink-0 lg:hidden"
           >
             <span className={`absolute left-0 top-1/2 h-0.5 w-full bg-white transition-transform duration-500 ease-in-out ${mobileOpen ? "rotate-45" : "-translate-y-2"}`} />
             <span className={`absolute left-0 top-1/2 h-0.5 w-full bg-white transition-opacity duration-300 ${mobileOpen ? "opacity-0" : ""}`} />
@@ -161,7 +161,7 @@ export default function Navbar() {
         >
           <div className="overflow-hidden">
             <ul
-              className={`mx-auto flex h-11 max-w-6xl items-center justify-center gap-x-6 px-6 transition-opacity duration-500 ease-in-out xl:gap-x-10 ${
+              className={`mx-auto flex h-12 max-w-6xl items-center justify-center gap-x-6 px-6 transition-opacity duration-500 ease-in-out xl:gap-x-10 ${
                 rowOpen ? "opacity-100" : "opacity-0"
               }`}
             >
@@ -187,7 +187,7 @@ export default function Navbar() {
 
       {/* Mobile full-screen menu */}
       <div
-        className={`fixed inset-0 z-40 overflow-y-auto bg-black px-6 pb-12 pt-32 transition-opacity duration-500 ease-in-out lg:hidden ${
+        className={`fixed inset-0 z-40 overflow-y-auto bg-black px-6 pb-12 pt-36 transition-opacity duration-500 ease-in-out lg:hidden ${
           mobileOpen ? "opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
@@ -230,7 +230,7 @@ export default function Navbar() {
       </div>
 
       {/* Spacer so content clears the fixed bar on non-home pages (taller on studio pages, where the second row stays open) */}
-      {!isHome && <div className={onStudioPage ? "h-24 lg:h-[calc(9.5rem+1px)]" : "h-24"} aria-hidden />}
+      {!isHome && <div className={onStudioPage ? "h-28 lg:h-[calc(10rem+1px)]" : "h-28"} aria-hidden />}
     </>
   );
 }
